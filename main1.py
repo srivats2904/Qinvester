@@ -273,8 +273,9 @@ with tab6:
             st.warning("No data found for this ticker and date range!")
             st.stop()
 
-        data['target'] = data['Close'].shift(-1).fillna(method='ffill')
-
+        data['target'] = data['Close'].shift(-1)#.fillna(method='ffill')
+        data=data.dropna()
+        
         X=data[['Close']].to_numpy()
         y=data[['target']].to_numpy()
 
